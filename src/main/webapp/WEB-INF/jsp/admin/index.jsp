@@ -84,7 +84,7 @@
 					<ul class="easyui-tree">
 						<li data-options="iconCls:'icon-users'"><a
 							href="javascript:void(0);"
-							onclick="addTab('工程队管理','admin/projectgroup/list','icon-users')">工程队管理</a></li>
+							onclick="addTab('承包单位管理','admin/projectgroup/list','icon-users')">承包单位管理</a></li>
 						<li data-options="iconCls:'icon-package-green'"><a
 							href="javascript:void(0);"
 							onclick="addTab('工程类别管理','admin/projecttype/list','icon-package-green')">工程类别管理</a></li>

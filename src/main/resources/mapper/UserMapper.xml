@@ -48,4 +48,12 @@
 	<update id="falseDeletion" parameterType="int">
 		update ap_user set us_isdel = 1 where us_id = #{id}  
 	</update>
+	
+	<select id="selectUserWithRole" parameterType="String" resultMap="BaseResultMap">
+		select * from ap_user where us_loginname = #{name}
+	</select>
+	
+	<select id="Userlogin" parameterType="com.project.application.bean.User" resultMap="BaseResultMap">
+		select * from ap_user where us_loginname = #{usLoginname} and us_pwd = #{usPwd}
+	</select>
 </mapper>

@@ -12,4 +12,5 @@ public interface UserMapper extends Mapper<User>{
 	List<User> selectUserByConditions(Map<String,Object> params);
 	User selectUserById(int id);
 	int falseDeletion(int id);
+	User Userlogin(User user);
 }

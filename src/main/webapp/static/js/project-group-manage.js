@@ -37,17 +37,17 @@ $(function(){
 		},
 		columns:[[{
 			field:'pgId',
-			title:"工程队编号",
+			title:"承包单位编号",
 			width:100,
 			align:'center',
 		},{
 			field:'pgName',
-			title:"工程队名称",
+			title:"承包单位名称",
 			width:220,
 			align:'center',
 		},{
 			field:'pgScale',
-			title:"工程队规模",
+			title:"承包单位规模",
 			width:220,
 			align:'center',
 		},{
@@ -111,7 +111,7 @@ $(function(){
 			return;
 		}
 		//提醒用户是否是真的删除数据
-		$.messager.confirm("确认消息", "您确定要删除工程队【"+selectRows[0].pgName+"】吗？", function (r) {
+		$.messager.confirm("确认消息", "您确定要删除承包单位【"+selectRows[0].pgName+"】吗？", function (r) {
 			if (r) {
 				MaskUtil.mask();
 				$.ajax({
@@ -134,7 +134,7 @@ $(function(){
 	}
 
 	$('#article-add-box').dialog({
-		title: '工程队新增',
+		title: '承包单位新增',
 		width: 1000,
 		height: 800,
 		closed: true,
@@ -198,7 +198,7 @@ $(function(){
 	function showArticleDetail(){
 		var selectRows =datagrid.treegrid("getSelections");
 		if (selectRows.length < 1) {
-			$.messager.alert("提示消息", "请选择要查看的文章!");
+			$.messager.alert("提示消息", "请选择要查看的承包单位!");
 			return;
 		}else if(selectRows.length > 1){
 			$.messager.alert("提示消息", "只能选择一条的记录!");
@@ -230,7 +230,7 @@ $(function(){
 	}
 	
 	$('#article-detail-box').dialog({
-		title: '工程队详情',
+		title: '承包单位详情',
 		width: 1000,
 		height: 800,
 		closed: true,

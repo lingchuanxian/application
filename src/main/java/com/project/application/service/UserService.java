@@ -33,4 +33,10 @@ public interface UserService extends Service<User>{
 	 * @return
 	 */
 	int falseDeletion(int id);
+	/**
+	 * 用户登录
+	 * @param user
+	 * @return
+	 */
+	User Userlogin(User user);
 }

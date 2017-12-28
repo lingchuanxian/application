@@ -42,4 +42,9 @@ public class ProjectGroupServiceImpl extends AbstractService<ProjectGroup> imple
 		return apProjectGroupMapper.SelectProjectGroupByCondition(params);
 	}
 
+	@Override
+	public ProjectGroup GroupLogin(ProjectGroup projectGroup) {
+		return apProjectGroupMapper.GroupLogin(projectGroup);
+	}
+
 }

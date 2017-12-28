@@ -53,7 +53,7 @@
 			<form id="article-search-form" method="post">
 				<table cellspacing="0" cellpadding="0">
 					<tr>
-						<td>工程队名称：</td>
+						<td>单位名称：</td>
 						<td><input type="text" id="name" style="width: 200px" /></td>
 						<td colspan="2" style="padding-left: 20px;"><a
 							href="javascript:;" class="easyui-linkbutton"
@@ -72,14 +72,14 @@
 		<form id="article-form" method="post">
 			<table class="rb-add-user" border="0" cellspacing="0" cellpadding="0">
 				<tr>
-					<td class="td_key">工程队名称：</td>
+					<td class="td_key">承包单位名称：</td>
 					<td class="td_val" colspan="3" style="width: 120px;"><input
 						class="easyui-textbox" id-="pgName" type="text" name="pgName"
 						style="width: 588px;" data-options="required:true"
 						missingMessage="请填写工程队名称" /></td>
 				</tr>
 				<tr>
-					<td class="td_key">工程队规模：</td>
+					<td class="td_key">承包单位规模：</td>
 					<td class="td_val" colspan="3"><select class="easyui-combobox"
 						name="pgScale" id="search-type" editable="false"
 						style="width: 588px;">
@@ -95,7 +95,7 @@
 				</tr>
 				<tr>
 				<tr>
-					<td class="td_key">工程队地址：</td>
+					<td class="td_key">承包单位地址：</td>
 					<td class="td_val" colspan="3"><input class="easyui-textbox"
 						id-="artTitle" type="text" name="pgAddress" style="width: 588px;"
 						data-options="required:true" missingMessage="请填写工程队地址" /></td>
@@ -108,7 +108,7 @@
 				</tr>
 				<tr>
 					<td class="td_key">负责人联系方式：<br>
-					<font color="#FF0000">(工程队登陆账号,默认密码为123456)</font></td>
+					<font color="#FF0000">(承包单位登陆账号,默认密码为123456)</font></td>
 					<td class="td_val" colspan="3"><input class="easyui-textbox"
 						id-="artTitle" type="text" name="pgLeaderPhone"
 						style="width: 588px;"
@@ -124,7 +124,7 @@
 						missingMessage="请填写工程队负责人邮箱" /></td>
 				</tr>
 				<tr>
-					<td class="td_key">工程队简介：</td>
+					<td class="td_key">承包单位简介：</td>
 					<td class="td_val" colspan="3"><textarea rows="8" id="pgBrief"
 							style="width: 100%; height: 400px;" name="pgBrief"></textarea></td>
 				</tr>
@@ -135,16 +135,16 @@
 	<div id="article-detail-box" style="display: none;">
 		<table class="rb-add-user" border="0" cellspacing="0" cellpadding="0">
 			<tr>
-				<td class="td_key" style="width: 120px;">工程队名称：</td>
+				<td class="td_key" style="width: 120px;">承包单位名称：</td>
 				<td class="td_val" colspan="3"><span class="pgName"></span></td>
 			</tr>
 			<tr>
-				<td class="td_key">工程队规模：</td>
+				<td class="td_key">承包单位规模：</td>
 				<td class="td_val" colspan="3"><span class="pgScale"></span></td>
 			</tr>
 			<tr>
 			<tr>
-				<td class="td_key">工程队地址：</td>
+				<td class="td_key">承包单位地址：</td>
 				<td class="td_val" colspan="3"><span class="pgAddress"></span>
 				</td>
 			</tr>
@@ -163,7 +163,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td class="td_key">工程队简介：</td>
+				<td class="td_key">承包单位简介：</td>
 				<td class="td_val" colspan="3"><span class="pgBrief"></span></td>
 			</tr>
 		</table>

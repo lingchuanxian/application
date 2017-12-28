@@ -11,7 +11,9 @@
 <title>三明学院工程管理系统</title>
 <meta name="Keywords" content="">
 <meta name="Description" content="">
+<link href="static/bootstrap/css/bootstrap.css" rel="stylesheet">
 <link href="static/gateway/css/index.css" rel="stylesheet">
+<link href="static/gateway/css/main.css" rel="stylesheet">
 <link rel="stylesheet" href="static/gateway/css/slide.css">
 <!--[if lt IE 9]>
 <script src="static/gateway/js/modernizr.js"></script>

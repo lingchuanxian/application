@@ -6,6 +6,7 @@ import com.project.application.bean.ArticleType;
 import com.project.application.bean.Project;
 import com.project.application.bean.ProjectGroup;
 import com.project.application.bean.User;
+import com.project.application.config.Constant;
 import com.project.application.config.SystemControllerLog;
 import com.project.application.service.ProjectGroupService;
 import com.github.pagehelper.PageHelper;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.*;
 
 import com.project.application.bean.ProjectGroup;
 
+import org.apache.shiro.crypto.hash.SimpleHash;
+import org.apache.shiro.util.ByteSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
@@ -61,6 +64,8 @@ public class ProjectGroupController {
     @PostMapping("AddProjectGroup")
 	public Result AddProjectGroup(@ModelAttribute ProjectGroup model) {
     	logger.info("model:"+model.toString());
+    	SimpleHash sh = new SimpleHash("MD5",Constant.RESET_PWD, ByteSource.Util.bytes(model.getPgLeaderPhone()),1024);
+    	model.setPgLeaderPwd(sh.toString());
     	projectGroupService.save(model);
 		return ResultGenerator.genSuccessResult().setMessage("新增成功");
 	}

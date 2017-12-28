@@ -22,6 +22,9 @@ public class ProjectGroup {
 
     @Column(name = "pg_leader_phone")
     private String pgLeaderPhone;
+    
+    @Column(name = "pg_leader_pwd")
+    private String pgLeaderPwd;
 
     @Column(name = "pg_leader_email")
     private String pgLeaderEmail;
@@ -32,7 +35,16 @@ public class ProjectGroup {
     @Column(name = "pg_brief")
     private String pgBrief;
 
-    /**
+    
+    public String getPgLeaderPwd() {
+		return pgLeaderPwd;
+	}
+
+	public void setPgLeaderPwd(String pgLeaderPwd) {
+		this.pgLeaderPwd = pgLeaderPwd;
+	}
+
+	/**
      * @return pg_id
      */
     public Integer getPgId() {

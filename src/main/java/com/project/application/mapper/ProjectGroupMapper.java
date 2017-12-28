@@ -11,4 +11,5 @@ public interface ProjectGroupMapper extends Mapper<ProjectGroup> {
 	ProjectGroup SelectProjectGroupByPhone(String _parameter);
 	ProjectGroup SelectProjectGroupbyId(int id);
 	List<ProjectGroup> SelectProjectGroupByCondition(Map<String,Object> params);
+	ProjectGroup GroupLogin(ProjectGroup projectGroup);
 }

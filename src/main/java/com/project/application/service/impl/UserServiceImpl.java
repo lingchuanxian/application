@@ -32,4 +32,8 @@ public class UserServiceImpl extends AbstractService<User> implements UserServic
 	public int falseDeletion(int id) {
 		return mUserMapper.falseDeletion(id);
 	}
+	@Override
+	public User Userlogin(User user) {
+		return mUserMapper.Userlogin(user);
+	}
 }

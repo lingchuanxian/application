@@ -42,4 +42,8 @@
 	<select id="SelectProjectGroupByPhone" parameterType="String" resultMap="BaseResultMap">
 		select * from ap_project_group where pg_leader_phone = #{_parameter}
 	</select>
+	
+	<select id="GroupLogin" parameterType="com.project.application.bean.ProjectGroup" resultMap="BaseResultMap">
+		select * from ap_project_group where pg_leader_phone = #{pgLeaderPhone} and pg_leader_pwd = #{pgLeaderPwd}
+	</select>
 </mapper>

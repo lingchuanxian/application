@@ -12,7 +12,7 @@ public class Constant {
      */
     public static final String LOGIN_ADMIN = "LOGIN_ADMIN";
     public static final String LOGIN_USER = "LOGIN_USER";
-    public static final String LOGIN_PROJECT = "LOGIN_PROJECT";
+    public static final String LOGIN_GROUP = "LOGIN_GROUP";
     
     /**
      * other

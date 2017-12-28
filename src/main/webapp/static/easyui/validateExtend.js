@@ -222,7 +222,7 @@ $.extend($.fn.validatebox.defaults.rules,
 function checkExist(valueName) {
     var b = 1;
     $.ajax({
-        url: "checkExist",
+        url: "admin/user/CheckExist",
         type: "post",
         dataType: "json",
         async: false,//是否异步执行
