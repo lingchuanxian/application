@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.application.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="com.project.application.bean.User">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="us_id" jdbcType="INTEGER" property="usId" />
+    <result column="us_loginname" jdbcType="VARCHAR" property="usLoginname" />
+    <result column="us_pwd" jdbcType="VARCHAR" property="usPwd" />
+    <result column="us_name" jdbcType="VARCHAR" property="usName" />
+    <result column="us_sex" jdbcType="INTEGER" property="usSex" />
+    <result column="us_phone" jdbcType="VARCHAR" property="usPhone" />
+    <result column="us_mail" jdbcType="VARCHAR" property="usMail" />
+    <result column="us_state" jdbcType="INTEGER" property="usState" />
+    <result column="us_registdate" jdbcType="TIMESTAMP" property="usRegistdate" />
+    <result column="us_lastlogindate" jdbcType="TIMESTAMP" property="usLastlogindate" />
+    <result column="us_isdel" jdbcType="INTEGER" property="usIsdel" />
+  </resultMap>
+  
+  
+	<!-- 排除已经删除的用户 -->
+	<sql id="expectisdel">
+        and us_isdel != 1
+    </sql>
+
+	<select id="selectUserByConditions" resultMap="BaseResultMap">
+		select
+		us_id,us_loginname,us_name,us_state,us_phone,us_mail
+		from
+		ap_user
+		where 1 = 1
+		<if test="name != null and name !=''">
+			and us_name LIKE CONCAT(CONCAT('%',#{name}),'%')
+		</if>
+		<if test="loginName != null and loginName !=''">
+			and us_loginname LIKE CONCAT(CONCAT('%',#{loginName}),'%')
+		</if>
+         <include refid="expectisdel"></include>
+		
+	</select>
+
+	<select id="selectUserById" parameterType="int" resultMap="BaseResultMap">
+		SELECT * from ap_user where us_id = #{id}  
+		<include refid="expectisdel"></include>
+	</select>
+	
+	<update id="falseDeletion" parameterType="int">
+		update ap_user set us_isdel = 1 where us_id = #{id}  
+	</update>
+</mapper>

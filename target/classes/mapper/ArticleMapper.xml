@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.application.mapper.ArticleMapper">
+  <resultMap id="BaseResultMap" type="com.project.application.bean.Article">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="art_id" jdbcType="INTEGER" property="artId" />
+    <result column="art_title" jdbcType="VARCHAR" property="artTitle" />
+    <result column="art_type" jdbcType="INTEGER" property="artType" />
+    <result column="art_date" jdbcType="TIMESTAMP" property="artDate" />
+    <result column="art_user" jdbcType="INTEGER" property="artUser" />
+    <result column="art_cover" jdbcType="VARCHAR" property="artCover" />
+    <result column="art_top" jdbcType="INTEGER" property="artTop" />
+    <result column="art_times" jdbcType="INTEGER" property="artTimes" />
+    <result column="art_enclosure" jdbcType="VARCHAR" property="artEnclosure" />
+    <result column="art_content" jdbcType="LONGVARCHAR" property="artContent" />
+    <association property="admin" column="art_user"
+			javaType="com.project.application.bean.Admin" select="com.project.application.mapper.AdminMapper.SelectAdminById">
+		</association>
+		<association property="articleType" column="art_type"
+			javaType="com.project.application.bean.ArticleType" select="com.project.application.mapper.ArticleTypeMapper.SelectArticleTypeById">
+		</association>
+  </resultMap>
+  
+  <select id="SelectArticle" resultMap="BaseResultMap">
+		select * from ap_article order by art_top,art_date DESC
+	</select>
+	
+	<select id="SelectArticleByCondition" resultMap="BaseResultMap">
+		select * from ap_article 
+		<if test="stype == 0">
+			where art_title LIKE CONCAT(CONCAT('%',#{skey}),'%')
+		</if>
+		<if test="stype == 1">
+			where art_type = #{skey}
+		</if>
+		order by art_top DESC,art_date DESC
+	</select>
+	
+	<select id="SelectArticlebyId" parameterType="int" resultMap="BaseResultMap">
+		select * from ap_article where art_id = #{id}
+	</select>
+	
+	<update id="UpdateBrTimes" parameterType="int">
+		update ap_article set art_times = art_times + 1 where art_id=#{id}
+	</update>
+  
+</mapper>

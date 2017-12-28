@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.application.mapper.AdminMapper">
+  <resultMap id="BaseResultMap" type="com.project.application.bean.Admin">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="ad_id" jdbcType="INTEGER" property="adId" />
+    <result column="ad_loginname" jdbcType="VARCHAR" property="adLoginname" />
+    <result column="ad_pwd" jdbcType="VARCHAR" property="adPwd" />
+    <result column="ad_name" jdbcType="VARCHAR" property="adName" />
+    <result column="ad_type" jdbcType="INTEGER" property="adType" />
+    <result column="ad_state" jdbcType="INTEGER" property="adState" />
+    <result column="ad_lastlogindate" jdbcType="TIMESTAMP" property="adLastlogindate" />
+    <result column="ad_lastloginip" jdbcType="VARCHAR" property="adLastloginip" />
+    <result column="ad_adddate" jdbcType="TIMESTAMP" property="adAdddate" />
+  </resultMap>
+  
+  <!-- 排除已经删除的用户 -->
+	<sql id="expectisdel">
+        and ad_isdel != 1
+    </sql>
+  
+  <select id="selectAdminByConditions" resultMap="BaseResultMap">
+		select
+		ad_id,ad_loginname,ad_name,ad_state,ad_lastlogindate,ad_lastloginip,ad_adddate
+		from
+		ap_admin
+		where ad_type = 1
+		<if test="name != null and name !=''">
+			and ad_name LIKE CONCAT(CONCAT('%',#{name}),'%')
+		</if>
+		<if test="loginName != null and loginName !=''">
+			and ad_loginname LIKE CONCAT(CONCAT('%',#{loginName}),'%')
+		</if>
+         <include refid="expectisdel"></include>
+		
+	</select>
+  
+  <select id="AdminLogin" parameterType="com.project.application.bean.Admin" resultMap="BaseResultMap">
+  	select * from ap_admin where ad_loginname = #{adLoginname} and ad_pwd = #{adPwd}
+  </select>
+  
+  <select id="SelectAdminById" parameterType="int" resultMap="BaseResultMap">
+  	select * from ap_admin where ad_id= #{id}
+  </select>
+  
+  <select id="SelectAdminByName" parameterType="String" resultMap="BaseResultMap">
+  	select * from ap_admin where ad_loginname= #{name}
+  </select>
+  
+  <update id="falseDeletion" parameterType="int">
+		update ap_admin set ad_isdel = 1 where ad_id = #{id}  
+	</update>
+</mapper>

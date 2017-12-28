@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.application.mapper.ProjectGroupMapper">
+  <resultMap id="BaseResultMap" type="com.project.application.bean.ProjectGroup">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="pg_id" jdbcType="INTEGER" property="pgId" />
+    <result column="pg_name" jdbcType="VARCHAR" property="pgName" />
+    <result column="pg_address" jdbcType="VARCHAR" property="pgAddress" />
+    <result column="pg_scale" jdbcType="VARCHAR" property="pgScale" />
+    <result column="pg_leader" jdbcType="VARCHAR" property="pgLeader" />
+    <result column="pg_leader_phone" jdbcType="VARCHAR" property="pgLeaderPhone" />
+    <result column="pg_leader_email" jdbcType="VARCHAR" property="pgLeaderEmail" />
+    <result column="pg_isdel" jdbcType="INTEGER" property="pgIsdel" />
+    <result column="pg_brief" jdbcType="LONGVARCHAR" property="pgBrief" />
+  </resultMap>
+  
+  <!-- 排除已经删除的用户 -->
+	<sql id="expectisdel">
+        and pg_isdel != 1
+    </sql>
+  
+  <select id="SelectProjectGroupByCondition" resultMap="BaseResultMap">
+  	select * from ap_project_group 
+  	where 1 = 1
+  	<if test="name != null and name !=''">
+			and pg_name LIKE CONCAT(CONCAT('%',#{name}),'%')
+		</if>
+  	<include refid="expectisdel" />
+  </select>
+  
+  <select id="SelectProjectGroupbyId" parameterType="int" resultMap="BaseResultMap">
+  	select * from ap_project_group where pg_id =#{id}
+  	<include refid="expectisdel" />
+  </select>
+  
+  <update id="falseDeletion" parameterType="int">
+		update ap_project_group set pg_isdel = 1 where pg_id = #{id}  
+	</update>
+	
+	<select id="SelectProjectGroupByPhone" parameterType="String" resultMap="BaseResultMap">
+		select * from ap_project_group where pg_leader_phone = #{_parameter}
+	</select>
+</mapper>

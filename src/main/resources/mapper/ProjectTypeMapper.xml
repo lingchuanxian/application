@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.application.mapper.ProjectTypeMapper">
+  <resultMap id="BaseResultMap" type="com.project.application.bean.ProjectType">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="pt_id" jdbcType="INTEGER" property="ptId" />
+    <result column="pt_name" jdbcType="VARCHAR" property="ptName" />
+  </resultMap>
+  
+  <select id="SelectProjectTypeById" parameterType="int" resultMap="BaseResultMap">
+  	select * from ap_project_type where pt_id = #{id}
+  </select>
+</mapper>

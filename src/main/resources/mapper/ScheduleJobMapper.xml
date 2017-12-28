@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.application.mapper.ScheduleJobMapper">
+  <resultMap id="BaseResultMap" type="com.project.application.bean.ScheduleJob">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="job_id" jdbcType="INTEGER" property="jobId" />
+    <result column="job_create_date" jdbcType="TIMESTAMP" property="jobCreateDate" />
+    <result column="job_update_date" jdbcType="TIMESTAMP" property="jobUpdateDate" />
+    <result column="job_name" jdbcType="VARCHAR" property="jobName" />
+    <result column="job_group" jdbcType="VARCHAR" property="jobGroup" />
+    <result column="job_status" jdbcType="VARCHAR" property="jobStatus" />
+    <result column="job_cron_expression" jdbcType="VARCHAR" property="jobCronExpression" />
+    <result column="job_description" jdbcType="VARCHAR" property="jobDescription" />
+    <result column="job_bean_class" jdbcType="VARCHAR" property="jobBeanClass" />
+    <result column="job_is_concurrent" jdbcType="VARCHAR" property="jobIsConcurrent" />
+    <result column="job_spring_id" jdbcType="VARCHAR" property="jobSpringId" />
+    <result column="job_method_name" jdbcType="VARCHAR" property="jobMethodName" />
+    <result column="job_reserved1" jdbcType="VARCHAR" property="jobReserved1" />
+    <result column="job_reserved2" jdbcType="VARCHAR" property="jobReserved2" />
+    <result column="job_reserved3" jdbcType="VARCHAR" property="jobReserved3" />
+  </resultMap>
+</mapper>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.application.mapper.ProjectMapper">
+	<resultMap id="BaseResultMap" type="com.project.application.bean.Project">
+		<!-- WARNING - @mbg.generated -->
+		<id column="pr_id" jdbcType="INTEGER" property="prId" />
+		<result column="pr_name" jdbcType="VARCHAR" property="prName" />
+		<result column="pr_state" jdbcType="INTEGER" property="prState" />
+		<result column="pr_budget" jdbcType="VARCHAR" property="prBudget" />
+		<result column="pr_expect_date" jdbcType="VARCHAR" property="prExpectDate" />
+		<result column="pr_contacts" jdbcType="VARCHAR" property="prContacts" />
+		<result column="pr_contacts_phone" jdbcType="VARCHAR" property="prContactsPhone" />
+		<result column="pr_description" jdbcType="LONGVARCHAR"
+			property="prDescription" />
+		<result column="pr_adddate" jdbcType="TIMESTAMP" property="prAdddate" />
+		<result column="pr_sign_start_date" jdbcType="TIMESTAMP" property="prSignStartDate" />
+		<result column="pr_sign_end_date" jdbcType="TIMESTAMP" property="prSignEndDate" />
+		<association property="projectType" column="pr_type"
+			javaType="com.project.application.bean.ProjectType"
+			select="com.project.application.mapper.ProjectTypeMapper.SelectProjectTypeById">
+		</association>
+	</resultMap>
+
+	<!-- 排除已经删除的项目 -->
+	<sql id="expectisdel">
+		and pr_isdel != 1
+	</sql>
+
+	<select id="SelectProjectByCondition" resultMap="BaseResultMap">
+		select * from ap_project
+		where 1 = 1
+		<if test="stype == 0">
+			and pr_name LIKE CONCAT(CONCAT('%',#{skey}),'%')
+		</if>
+		<if test="stype == 1">
+			and pr_type = #{skey}
+		</if>
+		<include refid="expectisdel"></include>
+		order by pr_adddate DESC
+	</select>
+
+	<select id="SelectProjectbyId" parameterType="int" resultMap="BaseResultMap">
+		select * from ap_project where pr_id = #{id}
+	</select>
+
+	<update id="falseDeletion" parameterType="int">
+		update ap_project set
+		pr_isdel = 1 where pr_id = #{id}
+	</update>
+	
+	<update id="UpdateProjectStatus">
+		update ap_project set
+		pr_state = #{state} where pr_id = #{id}
+	</update>
+</mapper>
