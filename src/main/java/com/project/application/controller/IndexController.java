@@ -434,7 +434,7 @@ public class IndexController extends BaseController{
 	
 	@RequestMapping("Center/GroupCheckPwd")
 	@ResponseBody
-	public Map<String,Object> GroupCheckPwd(String yPgLeaderPwd,String param) {
+	public Map<String,Object> GroupCheckPwd(String orPwd,String param) {
 		ProjectGroup pg = GetLoginProjectGroupSesseion();
 		SimpleHash sh = new SimpleHash("MD5",param, ByteSource.Util.bytes(pg.getPgLeaderPhone()),1024);
 		Map<String,Object> map=new HashMap<String,Object>();  

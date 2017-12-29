@@ -64,15 +64,19 @@
 				<span>您现在的位置:<a href="javascript:;">修改密码</a></span>
 			</h2>
 			<form id="updatePwd-form">
-				<div class="form-group">
-					<label for="yPgLeaderPwd" class="col-sm-3 control-label">原密码：</label>
+			<ul>
+				<li>
+					<div class="form-group col-sm-12">
+					<label for="orPwd" class="col-sm-3 control-label">原密码：</label>
 					<div class="col-sm-6">
-						<input type="password" class="form-control" id="yPgLeaderPwd"
-							name="yPgLeaderPwd" placeholder="原密码" datatype="*6-15"
+						<input type="password" class="form-control" id="orPwd"
+							name="orPwd" placeholder="原密码" datatype="*6-15"
 							nullmsg="请输入原登录密码" ajaxurl="Center/GroupCheckPwd">
 					</div>
 				</div>
-				<div class="form-group">
+				</li>
+				<li>
+					<div class="form-group col-sm-12">
 					<label for="pgLeaderPwd" class="col-sm-3 control-label">新密码：</label>
 					<div class="col-sm-6">
 						<input type="password" class="form-control" id="pgLeaderPwd"
@@ -80,7 +84,9 @@
 							recheck="pgLeaderPwd" nullmsg="请输入新密码" errormsg="两次密码输入不一致">
 					</div>
 				</div>
-				<div class="form-group">
+				</li>
+				<li>
+					<div class="form-group col-sm-12">
 					<label for="rePgLeaderPwd" class="col-sm-3 control-label">重复新密码：</label>
 					<div class="col-sm-6">
 						<input type="password" class="form-control" id="rePgLeaderPwd"
@@ -88,13 +94,19 @@
 							recheck="pgLeaderPwd" nullmsg="请再次输入新密码" errormsg="两次密码输入不一致">
 					</div>
 				</div>
-				<div class="form-group">
+				</li>
+				<li>
+					<div class="form-group col-sm-12">
 					<div class="col-sm-offset-3 col-sm-10">
 						<button type="submit" class="btn btn-primary">立即修改</button>
 						<button type="reset" class="btn btn-danger">重置</button>
 					</div>
 				</div>
+				</li>
+			</ul>
 			</form>
+			<div class="blank"></div>
+			
 		</div>
 	</div>
 	<jsp:include page="../footer.jsp"></jsp:include>
