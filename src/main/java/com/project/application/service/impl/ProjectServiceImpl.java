@@ -42,4 +42,9 @@ public class ProjectServiceImpl extends AbstractService<Project> implements Proj
 		return apProjectMapper.UpdateProjectStatus(params);
 	}
 
+	@Override
+	public int UpdateProjectSelectGroup(Project project) {
+		return apProjectMapper.UpdateProjectSelectGroup(project);
+	}
+
 }

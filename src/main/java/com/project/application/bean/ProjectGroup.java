@@ -169,4 +169,11 @@ public class ProjectGroup {
     public void setPgBrief(String pgBrief) {
         this.pgBrief = pgBrief;
     }
+
+	@Override
+	public String toString() {
+		return "ProjectGroup [pgId=" + pgId + ", pgName=" + pgName + ", pgAddress=" + pgAddress + ", pgScale=" + pgScale
+				+ ", pgLeader=" + pgLeader + ", pgLeaderPhone=" + pgLeaderPhone + ", pgLeaderPwd=" + pgLeaderPwd
+				+ ", pgLeaderEmail=" + pgLeaderEmail + ", pgIsdel=" + pgIsdel + ", pgBrief=" + pgBrief + "]";
+	}
 }

@@ -11,4 +11,5 @@ public interface ProjectMapper extends Mapper<Project> {
 	Project SelectProjectbyId(int id);
 	int falseDeletion(int id);
 	int UpdateProjectStatus(Map<String,Object> params);
+	int UpdateProjectSelectGroup(Project project);
 }

@@ -56,7 +56,7 @@ public class CodeGenerator {
     private static final String DATE = new SimpleDateFormat("yyyy/MM/dd").format(new Date());//@date
 
     public static void main(String[] args) {
-        genCode("ap_schedule_job","ScheduleJob");
+        genCode("ap_project_sign","ProjectSign");
         //genCode("oa_user","User");
         //genCode("输入表名","输入自定义Model名称");
     }

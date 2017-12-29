@@ -70,6 +70,11 @@ public class ProjectGroupController {
 		return ResultGenerator.genSuccessResult().setMessage("新增成功");
 	}
     
+    /**
+     * 验证手机号是否存在
+     * @param phone
+     * @return
+     */
     @PostMapping("CheckPhoneExist")
 	public Result CheckPhoneExist(@RequestParam String phone) {
 		ProjectGroup user = projectGroupService.SelectProjectGroupByPhone(phone);

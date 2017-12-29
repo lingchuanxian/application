@@ -168,6 +168,10 @@
 			</tr>
 		</table>
 	</div>
+	
+	<div id="select_group" style="display: none;">
+		<div id="group-tb"></div>
+	</div>
 
 	<script type="text/javascript" src="static/js/project-manage.js"></script>
 </body>

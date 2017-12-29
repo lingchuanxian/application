@@ -14,4 +14,5 @@ public interface ProjectService extends Service<Project> {
 	Project SelectProjectbyId(int id);
 	int falseDeletion(int id);
 	int UpdateProjectStatus(Map<String,Object> params);
+	int UpdateProjectSelectGroup(Project project);
 }

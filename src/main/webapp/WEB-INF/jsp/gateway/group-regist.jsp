@@ -124,7 +124,7 @@
 						<label for="pgLeaderPhone" class="col-sm-3 control-label">负责人联系方式：</label>
 						<div class="col-sm-6">
 							<input type="text" class="form-control" id="pgLeaderPhone" name="pgLeaderPhone"
-								placeholder="负责人联系方式" datatype="m" nullmsg="请输入负责人联系方式">
+								placeholder="负责人联系方式" datatype="m" nullmsg="请输入负责人联系方式" ajaxurl="GroupRegistCheckPhoneExist">
 						</div>
 					</div>
 					
@@ -167,8 +167,8 @@
 					</div>
 					<div class="form-group">
 						<div class="col-sm-offset-3 col-sm-10">
-							<button type="button" class="btn btn-primary" id="group-regist">注册</button>
-							<button type="reset" class="btn btn-danger">重置</button>
+							<button type="submit" class="btn btn-primary" id="btn-group-regist">注册</button>
+							<button type="reset" class="btn btn-danger" id="reset">重置</button>
 						</div>
 					</div>
 					<div class="form-group">

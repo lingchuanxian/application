@@ -145,8 +145,19 @@ public class ProjectController {
 	 */
 	@PostMapping("SelectProjectById")
 	public Result SelectProjectById(@RequestParam int id) {
-		Project model = projectService.findById(id);
+		Project model = projectService.SelectProjectbyId(id);
 		return ResultGenerator.genSuccessResult(model);
+	}
+	
+	@PostMapping("SelectProjectGroupForProject")
+	@SystemControllerLog(description = "为项目指定项目承包商")
+	public Result SelectProjectGroupForProject(@RequestParam int pid,@RequestParam int gid) {
+		System.out.println("pid:"+pid+"----gid:"+gid);
+		Project project = new Project();
+		project.setPrId(pid);
+		project.setPrSelectGroup(gid);
+		projectService.UpdateProjectSelectGroup(project);
+		return ResultGenerator.genSuccessResult().setMessage("指定成功");
 	}
 
 }

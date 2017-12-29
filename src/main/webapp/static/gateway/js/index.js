@@ -1,4 +1,6 @@
 $(function(){
+	var countdown = 3; 
+	
 	$("#regist").click(function(){
 		registFormCheck();
 	});
@@ -109,7 +111,7 @@ $(function(){
 	$("#login").click(function(){
 		loginFormCheck();
 	});
-	
+
 	function loginFormCheck(){
 		if($("#usLoginname").val() == ""){
 			$(".usLoginname").addClass("has-error");
@@ -118,13 +120,13 @@ $(function(){
 		}else{
 			$(".usLoginname").removeClass("has-error");
 			$("#usLoginname_helpBlock").html("");
-			
+
 			if($("#usPwd").val() == ""){
 				$(".usPwd").addClass("has-error");
 				return;
 			}else{
 				$(".usPwd").removeClass("has-error");
-				
+
 				$.ajax({
 					url:'UserLogin',
 					type:'post',
@@ -132,7 +134,8 @@ $(function(){
 					data:$("#login-form").serialize(),
 					success:function(data){
 						if(data.code== 200){
-							$("#result").html("登录成功");
+							$("#result").html("登录成功，<font class='second'></font>秒后将自动跳转到首页。");
+							settime($(".second"));
 						}else{
 							$("#result").html(data.message);
 						}
@@ -148,7 +151,7 @@ $(function(){
 	$("#group-login").click(function(){
 		groupLoginFormCheck();
 	});
-	
+
 	function groupLoginFormCheck(){
 		if($("#pgLeaderPhone").val() == ""){
 			$(".pgLeaderPhone").addClass("has-error");
@@ -157,13 +160,13 @@ $(function(){
 		}else{
 			$(".pgLeaderPhone").removeClass("has-error");
 			$("#pgLeaderPhone_helpBlock").html("");
-			
+
 			if($("#pgLeaderPwd").val() == ""){
 				$(".pgLeaderPwd").addClass("has-error");
 				return;
 			}else{
 				$(".pgLeaderPwd").removeClass("has-error");
-				
+
 				$.ajax({
 					url:'GroupLogin',
 					type:'post',
@@ -171,7 +174,8 @@ $(function(){
 					data:$("#group-login-form").serialize(),
 					success:function(data){
 						if(data.code== 200){
-							$("#result").html("登录成功");
+							$("#result").html("登录成功，<font class='second'></font>秒后将自动跳转到首页。");
+							settime($(".second"));
 						}else{
 							$("#result").html(data.message);
 						}
@@ -183,14 +187,44 @@ $(function(){
 			}
 		}
 	}
-	
+
 	$("#group-regist-form").Validform({
-			tiptype:3,
-			label:".label",
-			showAllError:true,
-			datatype:{
-				"zh1-6":/^[\u4E00-\u9FA5\uf900-\ufa2d]{1,6}$/
-			},
-			ajaxPost:true
+		tiptype:3,
+		showAllError:true,
+		callback:function(form){
+			$.ajax({
+				url:'ProjectGroupRegist',
+				type:'post',
+				dataType: 'json',
+				data:$("#group-regist-form").serialize(),
+				success:function(data){
+					if(data.code== 200){
+						$("#result").html("注册成功，马上<a href='group-login' style='text-decoration:underline;'>去登录</a>");
+						$("#reset").click(); 
+					}else{
+						$("#result").html(data.message);
+					}
+				},
+				error:function(e){
+					alert(e.message);
+				}
+			});
+			return false;
+		}
 	});	
+
+
+	function settime(val) { 
+		if (countdown == 0) { 
+			window.location.href="index"
+			countdown = 3;
+		} else { 
+			val.html(countdown);
+			countdown--; 
+		} 
+		setTimeout(function() { 
+			settime(val) 
+		},1000) 
+	} 
+	
 });

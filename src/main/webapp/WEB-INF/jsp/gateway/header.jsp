@@ -17,7 +17,7 @@
 			</c:if>
 			
 			<c:if test="${LOGIN_GROUP != null }">
-				<span>欢迎您，<a title="个人中心" href="">${LOGIN_GROUP.pgName }</a>，<a href="user-logout" style="color:#FF0000;">注销登录</a></span>
+				<span>欢迎您，<a title="个人中心" href="Center/info">${LOGIN_GROUP.pgName }</a>，<a href="user-logout" style="color:#FF0000;">注销登录</a></span>
 				
 			</c:if>
 
@@ -29,10 +29,10 @@
 		<ul>
 			<li><a href="index">网站首页</a></li>
 			<li><a href="project/list/0-1">工程公告</a></li>
-			<li><a href="newlist.html">承包单位</a></li>
-			<li><a href="newlist.html">新闻中心</a></li>
-			<li><a href="newlist.html">通知公告</a></li>
-			<li><a href="ablumlist.html">下载专区</a></li>
+			<li><a href="group/list/1">承包单位</a></li>
+			<li><a href="article/list/1-1">新闻中心</a></li>
+			<li><a href="article/list/2-1">通知公告</a></li>
+			<li><a href="article/list/14-1">下载专区</a></li>
 			<li><a href="book.html">留言板</a></li>
 		</ul>
 	</nav>

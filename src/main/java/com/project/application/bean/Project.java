@@ -38,7 +38,7 @@ public class Project {
      * 4 正在建设
      * 5 完工，提交验收报告，待验收
      * 6 验收中
-     * 7 验收通过，项目完成。
+     * 7 验收通过。
      * 8 验收未通过，待返修
      * 9 返修中
      * 10 完成
@@ -70,11 +70,33 @@ public class Project {
     @Column(name = "pr_sign_end_date")
     private Date prSignEndDate;
     
+    @Column(name = "pr_select_group")
+    private Integer prSelectGroup;
+    
+    @Transient
+    private ProjectGroup projectGroup;
+    
     @Transient
     private ProjectType projectType;
     
     
-    public Date getPrSignStartDate() {
+    public ProjectGroup getProjectGroup() {
+		return projectGroup;
+	}
+
+	public void setProjectGroup(ProjectGroup projectGroup) {
+		this.projectGroup = projectGroup;
+	}
+
+	public Integer getPrSelectGroup() {
+		return prSelectGroup;
+	}
+
+	public void setPrSelectGroup(Integer prSelectGroup) {
+		this.prSelectGroup = prSelectGroup;
+	}
+
+	public Date getPrSignStartDate() {
 		return prSignStartDate;
 	}
 

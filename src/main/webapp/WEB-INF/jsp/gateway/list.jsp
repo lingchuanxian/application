@@ -99,6 +99,36 @@
 	</div>
 	</c:if>
 	
+	<c:if test="${flag == 3 }">
+		<div class="contain">
+		<div class="listl left">
+			<h2>承包单位</h2>
+			<ul>
+			</ul>
+		</div>
+		<div class="listr right">
+			<h2>
+				<span>您现在的位置:承包单位 <a href="javascript:;">
+				</a></span>
+			</h2>
+			<ul>
+				<c:forEach items="${list.list }" var="group">
+					<li><a href="group/detail//${group.pgId }" ><span>规模：${group.pgScale }</span>${group.pgName }
+							</a></li>
+				</c:forEach>
+			</ul>
+			<div class="blank"></div>
+			<div class="page">
+					<a href="group/list/-1">首页</a>
+					<a href="group/list/${list.pageNum - 1 }">上一页</a>
+					总   ${list.pageNum } / ${list.pages } 页
+					<a href="group/list/${list.pageNum + 1 }">下一页</a>
+					<a href="group/list/${list.pages }">末页</a>
+			</div>
+		</div>
+	</div>
+	</c:if>
+	
 	<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>

@@ -19,6 +19,10 @@
 			javaType="com.project.application.bean.ProjectType"
 			select="com.project.application.mapper.ProjectTypeMapper.SelectProjectTypeById">
 		</association>
+		<association property="projectGroup" column="pr_select_group"
+			javaType="com.project.application.bean.ProjectGroup"
+			select="com.project.application.mapper.ProjectGroupMapper.SelectProjectGroupbyId">
+		</association>
 	</resultMap>
 
 	<!-- 排除已经删除的项目 -->
@@ -51,5 +55,10 @@
 	<update id="UpdateProjectStatus">
 		update ap_project set
 		pr_state = #{state} where pr_id = #{id}
+	</update>
+	
+	<update id="UpdateProjectSelectGroup" parameterType="com.project.application.bean.Project">
+		update ap_project set
+		pr_select_group = #{prSelectGroup}, pr_state = 3 where pr_id = #{prId}
 	</update>
 </mapper>

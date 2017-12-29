@@ -56,13 +56,25 @@ $(function(){
 		},{
 			field:'prBudget',
 			title:"项目预算",
-			width:220,
+			width:90,
 			align:'center'
 		},{
 			field:'prExpectDate',
 			title:"项目预计周期",
-			width:220,
+			width:90,
 			align:'center'
+		},{
+			field:'projectGroup',
+			title:"项目承包商",
+			width:220,
+			align:'center',
+			formatter: function(value,row,index){
+				if(value == null){
+					return "待定";
+				}else{
+					return value.pgName;
+				}
+			}
 		},{
 			field:'prSignStartDate',
 			title:"报名开始时间",
@@ -127,9 +139,25 @@ $(function(){
 			handler:function(){
 				showArticleDetail();
 			}
-		}],
+		},'-',{
+			id:'selectGroup',
+			text:'选择承包商',
+			iconCls:'icon-user-accept16',
+			handler:function(){
+				selectGroup();
+			}
+		}],onBeforeLoad:function(){
+			$("#selectGroup").hide();
+		},
 		onLoadSuccess: function(row){
 			datagrid.datagrid("unselectAll");
+		},
+		onSelect:function(rowIndex, rowData){  
+			if(rowData.prState == 2){
+				$("#selectGroup").show();
+			}else{
+				$("#selectGroup").hide();
+			}
 		},
 	});
 
@@ -276,7 +304,7 @@ $(function(){
 						var project = data.data;
 						console.log(project);
 						$(".prName").html(project.prName);
-						$(".prType").html(project.prName);
+						$(".prType").html(project.projectType.ptName);
 						$(".prBudget").html(project.prBudget);
 						$(".prExpectDate").html(project.prExpectDate);
 						$(".prDescription").html(project.prDescription);
@@ -309,5 +337,98 @@ $(function(){
 		}]
 	});
 	
+	function selectGroup(){
+		var selectRows =datagrid.datagrid("getSelections");
+		if (selectRows.length < 1) {
+			$.messager.alert("提示消息", "请选择项目!");
+			return;
+		}
+		showUserRoleDialog(selectRows[0].prId);
+	}
+	
+	function showUserRoleDialog(id){
+		var selectDatagrid =  $("#group-tb").datagrid({
+			method:"POST",
+			url:"admin/projectSign/SelectProjectSignByProjectId",
+			queryParams: {          
+				id: id            
+			} ,
+			idField:'psId',
+			fit:true,
+			checkOnSelect : true,  
+			width:700,
+			height: 500,
+			fitColumns:false,
+			loadFilter: function(data){
+				if (data.code == 200){
+					console.log(data.data);
+					return data.data;
+				}
+			},
+			columns:[[{
+				field : 'ck',
+				title:'编号',
+				checkbox : true,
+				align:'center',
+			},
+			{
+				field:'projectGroup',
+				title:"承包单位名称",
+				width:400,
+				align:'center',
+				formatter:function(val,row,index){ 
+						return val.pgName;
+				},  
+			}
+			]],
+			onLoadSuccess: function(data){
+				if (data.total == 0) { 
+					//添加一个新数据行，第一列的值为你需要的提示信息，然后将其他列合并到第一列来，注意修改colspan参数为你columns配置的总列数 
+					$(this).datagrid('appendRow', { rlName: '<div style="color:red">没有相关记录！</div>' }).datagrid('mergeCells', { index: 0, field: 'rlName', colspan: 2 }); 
+				} 
+			},
+		});
+
+		$('#select_group').dialog({
+			title: '选择承包商',
+			width: 615,
+			height: 580,
+			closed: false,
+			cache: false,
+			modal: true,
+			buttons:[{
+				text:'确定',
+				iconCls:'icon-ok',
+				handler:function(){
+					var selectRowss = selectDatagrid.datagrid("getSelections");
+					if (selectRowss.length < 1) {
+						$.messager.alert("提示消息", "请选择承包商!");
+						return;
+					}
+					$.ajax({
+						url: "admin/project/SelectProjectGroupForProject",
+						type: "post",
+						dataType: "json",
+						data:{"pid":id,"gid":selectRowss[0].projectGroup.pgId},
+						success: function (data) {
+							console.log(data);
+							if(data.code == 200){
+								$('#group-tb').datagrid("clearSelections");
+								$('#select_group').dialog("close");
+								datagrid.datagrid("reload");
+							}
+						}
+					});
+				}
+			},{
+				text:'关闭',
+				iconCls:'icon-cancel',
+				handler:function(){
+					$('#group-tb').datagrid("clearSelections");
+					$('#select_group').dialog("close");
+				}
+			}]
+		});
+	}
 	
 });
